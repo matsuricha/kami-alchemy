@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://b7uta6axr584"]
+
+[ext_resource type="Theme" uid="uid://bsek5mdj3twjm" path="res://Assets/UI/Themes/label_theme.res" id="1_qumfl"]
+[ext_resource type="Script" uid="uid://yaew3mpq1lxj" path="res://Scripts/Nodes/SceneTransitionButton.cs" id="1_s486e"]
+[ext_resource type="Script" uid="uid://d0bwp1otqjk0i" path="res://Scripts/Nodes/Map/DungeonLocationButton.cs" id="2_7yn8b"]
+[ext_resource type="Script" uid="uid://bssqtvt1rcr51" path="res://Scripts/Nodes/Map/DungeonSelectWindow.cs" id="3_etk83"]
+
+[node name="Map" type="Control" unique_id=633642593]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_qumfl")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1800105752]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.96495444, 0.8811246, 0.8338695, 1)
+
+[node name="Label" type="Label" parent="." unique_id=1645123248]
+layout_mode = 0
+offset_left = 161.0
+offset_top = 103.0
+offset_right = 309.0
+offset_bottom = 149.0
+theme = ExtResource("1_qumfl")
+theme_override_font_sizes/font_size = 25
+text = "MAP"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=17430115]
+visible = false
+layout_mode = 0
+offset_left = 835.0
+offset_top = 488.0
+offset_right = 1054.0
+offset_bottom = 547.0
+text = "ダンジョンへ"
+script = ExtResource("1_s486e")
+TargetSceneName = "Dungeon"
+
+[node name="DungeonBtn_Mizuhame0" type="Button" parent="." unique_id=1832916512 node_paths=PackedStringArray("TargetWindow")]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 305.0
+offset_right = 276.0
+offset_bottom = 342.0
+script = ExtResource("2_7yn8b")
+TargetWindow = NodePath("../DungeonSelectCanvas/SelectionWindow")
+
+[node name="DungeonSelectCanvas" type="CanvasLayer" parent="." unique_id=744786586]
+
+[node name="SelectionWindow" type="PanelContainer" parent="DungeonSelectCanvas" unique_id=1349245367 node_paths=PackedStringArray("TitleLabel", "InfoLabel")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -149.75
+offset_top = -152.5
+offset_right = 149.75
+offset_bottom = 152.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_qumfl")
+script = ExtResource("3_etk83")
+TitleLabel = NodePath("VBoxContainer/DungeonTitleLabel")
+InfoLabel = NodePath("VBoxContainer/InfoLabel")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DungeonSelectCanvas/SelectionWindow" unique_id=186164535]
+layout_mode = 2
+alignment = 1
+
+[node name="DungeonTitleLabel" type="Label" parent="DungeonSelectCanvas/SelectionWindow/VBoxContainer" unique_id=1260600963]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="DescriptionLabel" type="Label" parent="DungeonSelectCanvas/SelectionWindow/VBoxContainer" unique_id=1463863372]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="InfoLabel" type="Label" parent="DungeonSelectCanvas/SelectionWindow/VBoxContainer" unique_id=624790920]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "ミヅハメの加護を得た川"
+
+[node name="Control" type="Control" parent="DungeonSelectCanvas/SelectionWindow/VBoxContainer" unique_id=671995869]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DungeonSelectCanvas/SelectionWindow/VBoxContainer" unique_id=1056413287]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="CloseButton" type="Button" parent="DungeonSelectCanvas/SelectionWindow/VBoxContainer/HBoxContainer" unique_id=813088571]
+layout_mode = 2
+theme = ExtResource("1_qumfl")
+text = "やめる"
+
+[node name="EnterButton" type="Button" parent="DungeonSelectCanvas/SelectionWindow/VBoxContainer/HBoxContainer" unique_id=2009742406]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 2.12
+text = "潜る"
+
+[connection signal="pressed" from="DungeonSelectCanvas/SelectionWindow/VBoxContainer/HBoxContainer/CloseButton" to="DungeonSelectCanvas/SelectionWindow" method="OnCloseButtonPressed"]
+[connection signal="pressed" from="DungeonSelectCanvas/SelectionWindow/VBoxContainer/HBoxContainer/EnterButton" to="DungeonSelectCanvas/SelectionWindow" method="OnEnterButtonPressed"]

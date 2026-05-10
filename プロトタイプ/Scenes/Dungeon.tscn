@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://ceg33wcdnmvfa"]
+
+[ext_resource type="Script" uid="uid://cc44ihpshyvp2" path="res://Scripts/Nodes/Dungeon/DungeonManager.cs" id="1_50clt"]
+[ext_resource type="Theme" uid="uid://bsek5mdj3twjm" path="res://Assets/UI/Themes/label_theme.res" id="2_3av5o"]
+[ext_resource type="Script" uid="uid://bpooitq5tl5ni" path="res://Scripts/Nodes/Dungeon/DungeonStepButton.cs" id="2_a3tf6"]
+[ext_resource type="Theme" uid="uid://dyclvdfs8gx6k" path="res://Assets/UI/Themes/Button_theme.res" id="3_f3j0u"]
+[ext_resource type="Script" uid="uid://yaew3mpq1lxj" path="res://Scripts/Nodes/SceneTransitionButton.cs" id="5_f3j0u"]
+
+[node name="Dungeon" type="Control" unique_id=1447661741 node_paths=PackedStringArray("FloorLabel", "LogLabel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 1.0
+offset_right = -1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_50clt")
+FloorLabel = NodePath("FloorLabel")
+LogLabel = NodePath("Label")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=156098235]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.9647059, 0.88235295, 0.8352941, 1)
+
+[node name="Label" type="Label" parent="." unique_id=1828007718]
+layout_mode = 0
+offset_left = 163.0
+offset_top = 112.0
+offset_right = 388.0
+offset_bottom = 332.0
+theme = ExtResource("2_3av5o")
+
+[node name="Control" type="Control" parent="." unique_id=1255572053]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FloorLabel" type="Label" parent="." unique_id=336354446]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 24.0
+offset_right = 188.0
+offset_bottom = 60.0
+theme = ExtResource("2_3av5o")
+text = "                              "
+
+[node name="Background" type="TextureRect" parent="." unique_id=323279383]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StatusPanel" type="Panel" parent="." unique_id=505173259]
+layout_mode = 0
+offset_left = 809.0
+offset_top = 62.0
+offset_right = 994.0
+offset_bottom = 339.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=28259551]
+layout_mode = 0
+offset_left = 557.0
+offset_top = 533.0
+offset_right = 1069.0
+offset_bottom = 577.0
+theme = ExtResource("3_f3j0u")
+theme_override_constants/separation = 50
+
+[node name="UpStepButton" type="Button" parent="HBoxContainer" unique_id=1913016689]
+layout_mode = 2
+text = "進む"
+script = ExtResource("2_a3tf6")
+
+[node name="DownStepButton" type="Button" parent="HBoxContainer" unique_id=1467230733]
+layout_mode = 2
+text = "戻る"
+script = ExtResource("2_a3tf6")
+StepDelta = -1
+
+[node name="MenuButton" type="Button" parent="HBoxContainer" unique_id=1179409605]
+layout_mode = 2
+text = "めにう"
+script = ExtResource("5_f3j0u")
+TargetSceneName = "Menu"

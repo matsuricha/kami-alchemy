@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://danaewiobli1a"]
+
+[ext_resource type="Script" uid="uid://yaew3mpq1lxj" path="res://Scripts/Nodes/SceneTransitionButton.cs" id="1_3wdrw"]
+[ext_resource type="Theme" uid="uid://bsek5mdj3twjm" path="res://Assets/UI/Themes/label_theme.res" id="1_g6esj"]
+[ext_resource type="Theme" uid="uid://dyclvdfs8gx6k" path="res://Assets/UI/Themes/Button_theme.res" id="2_ptt31"]
+
+[node name="Village" type="Control" unique_id=1820149777]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1524366378]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.9647059, 0.88235295, 0.8352941, 1)
+
+[node name="Label" type="Label" parent="." unique_id=1220568597]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 69.0
+offset_right = 197.0
+offset_bottom = 97.0
+theme = ExtResource("1_g6esj")
+text = "村"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=2085135293]
+layout_mode = 0
+offset_left = 635.0
+offset_top = 408.0
+offset_right = 707.0
+offset_bottom = 433.0
+theme = ExtResource("2_ptt31")
+text = "外へ"
+script = ExtResource("1_3wdrw")
+TargetSceneName = "Map"

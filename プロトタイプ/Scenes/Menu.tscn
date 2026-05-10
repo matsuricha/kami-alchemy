@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://3b0cc8imu3go"]
+
+[ext_resource type="Theme" uid="uid://dyclvdfs8gx6k" path="res://Assets/UI/Themes/Button_theme.res" id="1_3kf3n"]
+[ext_resource type="Theme" uid="uid://bo0fsnlxsk2pa" path="res://Assets/UI/Themes/PanelContainer.res" id="1_6pedr"]
+[ext_resource type="Script" uid="uid://brc8cvv52rhth" path="res://Scripts/Nodes/UI/MenuManager.cs" id="1_syfuq"]
+
+[node name="Menu" type="Control" unique_id=1868283363]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_syfuq")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1674408725]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.9647059, 0.88235295, 0.8352941, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=595049873]
+
+[node name="RightPanel" type="ScrollContainer" parent="CanvasLayer" unique_id=1533916428]
+custom_minimum_size = Vector2(100, 0)
+offset_left = 39.0
+offset_top = 33.0
+offset_right = 1116.0
+offset_bottom = 598.0
+
+[node name="InventoryWindow" type="PanelContainer" parent="CanvasLayer" unique_id=595728174]
+offset_left = 87.0
+offset_top = 74.0
+offset_right = 283.0
+offset_bottom = 592.0
+theme = ExtResource("1_6pedr")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/InventoryWindow" unique_id=1730696928]
+layout_mode = 2
+theme = ExtResource("1_3kf3n")
+theme_override_constants/separation = 19
+
+[node name="ItemsButton" type="Button" parent="CanvasLayer/InventoryWindow/VBoxContainer" unique_id=685483452]
+layout_mode = 2
+text = "道具"
+
+[node name="EquipmentButton" type="Button" parent="CanvasLayer/InventoryWindow/VBoxContainer" unique_id=1605176744]
+layout_mode = 2
+text = "装備"
+
+[node name="SkillTreeButton" type="Button" parent="CanvasLayer/InventoryWindow/VBoxContainer" unique_id=941456139]
+layout_mode = 2
+text = "能力"
+
+[node name="LibraryButton" type="Button" parent="CanvasLayer/InventoryWindow/VBoxContainer" unique_id=368230307]
+layout_mode = 2
+text = "図鑑"
+
+[node name="SaveLoadButton" type="Button" parent="CanvasLayer/InventoryWindow/VBoxContainer" unique_id=1480635974]
+layout_mode = 2
+text = "保存・再開"
+
+[node name="SettingsButton" type="Button" parent="CanvasLayer/InventoryWindow/VBoxContainer" unique_id=16579076]
+layout_mode = 2
+text = "設定"
+
+[node name="ExitToTitleButton" type="Button" parent="CanvasLayer/InventoryWindow/VBoxContainer" unique_id=502481251]
+layout_mode = 2
+text = "終了"

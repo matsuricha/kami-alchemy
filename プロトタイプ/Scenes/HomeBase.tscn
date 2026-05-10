@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://diqpkoobdtgu8"]
+
+[ext_resource type="Script" uid="uid://yaew3mpq1lxj" path="res://Scripts/Nodes/SceneTransitionButton.cs" id="1_272u8"]
+[ext_resource type="Theme" uid="uid://dyclvdfs8gx6k" path="res://Assets/UI/Themes/Button_theme.res" id="1_b8ciu"]
+[ext_resource type="Theme" uid="uid://bsek5mdj3twjm" path="res://Assets/UI/Themes/label_theme.res" id="3_kghmq"]
+
+[node name="HomeBase" type="Control" unique_id=1447661741]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=105298675]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.9647059, 0.88235295, 0.8352941, 1)
+
+[node name="Button" type="Button" parent="." unique_id=523483450]
+layout_mode = 0
+offset_left = 822.0
+offset_top = 491.0
+offset_right = 974.0
+offset_bottom = 526.0
+theme = ExtResource("1_b8ciu")
+text = "村へ移動"
+script = ExtResource("1_272u8")
+TargetSceneName = "Village"
+
+[node name="Label" type="Label" parent="." unique_id=994675858]
+layout_mode = 0
+offset_left = 196.0
+offset_top = 119.0
+offset_right = 333.0
+offset_bottom = 165.0
+theme = ExtResource("3_kghmq")
+text = "神社"
+horizontal_alignment = 1
+vertical_alignment = 1
