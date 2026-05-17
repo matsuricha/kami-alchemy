@@ -1,12 +1,16 @@
 [gd_scene format=3 uid="uid://dyycigcgfsprq"]
 
-[node name="InventoryWindow" type="Control" unique_id=327544315]
+[ext_resource type="Script" uid="uid://dtn2wubvgd1gm" path="res://Scripts/Nodes/UI/InventoryWindow.cs" id="1_5sm5j"]
+
+[node name="InventoryWindow" type="Control" unique_id=327544315 node_paths=PackedStringArray("ItemContainer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_5sm5j")
+ItemContainer = NodePath("ItemContainer")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=536194396]
 layout_mode = 1
@@ -16,3 +20,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.9647059, 0.88235295, 0.8352941, 1)
+
+[node name="ItemContainer" type="VBoxContainer" parent="." unique_id=1609039930]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 250.0
+offset_top = 50.0
+offset_right = -102.0
+offset_bottom = -98.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="ItemContainer" unique_id=1702288937]
+layout_mode = 2
+text = "道具画面"

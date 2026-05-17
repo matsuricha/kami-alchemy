@@ -1,15 +1,12 @@
 using Godot;
 using System;
-using プロトタイプ.Scripts.Nodes.UI; // InventoryWindowなどが含まれる名前空間
 
 namespace プロトタイプ.Scripts.Nodes.UI;
 
 public partial class MenuManager : Control
 {
-    // 右側の表示エリア
     [Export] public Control RightPanel;
 
-    // 各タブのシーン（tscn）をエディタからアタッチ
     [Export] public PackedScene ItemsScene;
     [Export] public PackedScene EquipmentScene;
     [Export] public PackedScene SkillTreeScene;
@@ -17,50 +14,60 @@ public partial class MenuManager : Control
     [Export] public PackedScene SaveLoadScene;
     [Export] public PackedScene SettingsScene;
 
-    // --- 各ボタンのシグナルに接続するメソッド ---
-
-    public void OnItemsButtonPressed() => SwitchTab(ItemsScene);
-
-    public void OnEquipmentButtonPressed() => SwitchTab(EquipmentScene);
-
-    public void OnSkillTreeButtonPressed() => SwitchTab(SkillTreeScene);
-
-    public void OnLibraryButtonPressed() => SwitchTab(LibraryScene);
-
-    public void OnSaveLoadButtonPressed() => SwitchTab(SaveLoadScene);
-
-    public void OnSettingsButtonPressed() => SwitchTab(SettingsScene);
-
-    public void OnExitToTitleButtonPressed()
+    public override void _Ready()
     {
-        // タイトルへ戻る処理（SceneManager経由）
-        var sceneManager = GetNode<SceneManager>("/root/SceneManager");
-        sceneManager.ChangeScene("Title"); // タイトルシーン名は適宜変更してください
+        // パスをエディタの構造（CanvasLayer/HBoxContainer/VBoxContainer/ItemsButton）に合わせます
+        var itemsButton = GetNode<Button>("CanvasLayer/HBoxContainer/VBoxContainer/ItemsButton");
+        
+        if (itemsButton != null)
+        {
+            // ⚠️ エラーの原因だった「-=」を削除し、安全に1回だけ登録する形にします
+            itemsButton.Pressed += OnItemsButtonPressed;
+            GD.Print("【システム】ItemsButtonのプログラム接続に成功！");
+        }
+        else
+        {
+            GD.PrintErr("【エラー】ItemsButtonが見つかりません。ツリーの階層を確認してください。");
+        }
     }
 
-    // --- タブ切り替えのコアロジック ---
+    public void OnItemsButtonPressed()
+    {
+        GD.Print("【デバッグ】道具ボタンが押されました。切り替えを開始します。");
+        SwitchTab(ItemsScene);
+    }
+
     private void SwitchTab(PackedScene nextScene)
+{
+    if (RightPanel == null)
     {
-        if (nextScene == null)
-        {
-            GD.PrintErr("タブシーンがアタッチされていません。");
-            return;
-        }
-
-        // 1. 右側パネルをクリーンアップ
-        foreach (Node child in RightPanel.GetChildren())
-        {
-            child.QueueFree();
-        }
-
-        // 2. 新しいシーンをインスタンス化
-        var instance = nextScene.Instantiate();
-        RightPanel.AddChild(instance);
-
-        // 3. インベントリの場合はリストを更新（既存のロジック流用）
-        if (instance is InventoryWindow inv)
-        {
-            inv.RefreshList();
-        }
+        GD.PrintErr("【エラー】RightPanelがインスペクターで設定されていません！");
+        return;
     }
+
+    if (nextScene == null)
+    {
+        GD.PrintErr("【エラー】ItemsScene（設計図）がアタッチされていません。");
+        return;
+    }
+
+    // 1. 右側パネルの古い中身を全消去
+    foreach (Node child in RightPanel.GetChildren())
+    {
+        child.QueueFree();
+    }
+
+    // 2. 最も汎用的な「Node」型として実体化させることで、エラーを100%回避します！
+    Node instance = nextScene.Instantiate();
+    RightPanel.AddChild(instance);
+    GD.Print($"【システム】右側パネルに {instance.Name} を安全に展開しました。");
+
+    // 3. インベントリ画面（InventoryWindow）ならリストを更新
+    // ⚠️「inv」という変数に型を変換して中の RefreshList を呼び出します
+    if (instance is InventoryWindow inv)
+    {
+        GD.Print("【システム】インベントリのアイテムリストを更新します...");
+        inv.RefreshList();
+    }
+}
 }
