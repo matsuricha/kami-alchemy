@@ -1,14 +1,13 @@
 using Godot;
+using System;
 using System.Collections.Generic;
-using プロトタイプ.Scripts.Models; // ItemMasterがある場所
 using System.Linq;
-
+using プロトタイプ.Scripts.Models;
 namespace プロトタイプ.Scripts.Nodes.UI;
 
 public partial class InventoryWindow : PanelContainer
 {
-    // アイテムラベルを並べるためのコンテナ（VBoxContainerなどをアタッチ）
-    [Export] public VBoxContainer ItemContainer; 
+    [Export] public VBoxContainer ItemContainer;
 
     public void RefreshList()
     {
